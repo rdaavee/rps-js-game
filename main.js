@@ -7,6 +7,7 @@ const computerScoreDisplay = document.getElementById("computerScoreDisplay");
 
 let playerScore = 0;
 let computerScore = 0;
+let score = 10;
 
 function playGame(playerChoice) {
     
@@ -37,16 +38,46 @@ function playGame(playerChoice) {
 
     resultDisplay.classList.remove("greenText", "redText");
 
-    switch(result) {
-        case "YOU WIN!":
-            resultDisplay.classList.add("greenText");
-            playerScore++;
-            playerScoreDisplay.textContent = playerScore;
-            break;
-        case "YOU LOSE!":
-            resultDisplay.classList.add("redText");
-            computerScore++;
-            computerScoreDisplay.textContent = computerScore;
-            break;    
-    }
+        switch(result) {
+
+            case "YOU WIN!":
+                resultDisplay.classList.add("greenText");
+                playerScore++;
+                playerScoreDisplay.textContent = playerScore;
+
+                if(playerScore == score) {
+                    window.alert("YOU WIN!");
+                    playerScore = 0;
+                    computerScore = 0;
+                    computerScoreDisplay.textContent = computerScore;
+                    playerScoreDisplay.textContent = playerScore;
+                }
+                break;
+                
+            case "YOU LOSE!":
+                resultDisplay.classList.add("redText");
+                computerScore++;
+                computerScoreDisplay.textContent = computerScore;       
+
+                if(computerScore == score) {
+                    window.alert("YOU LOSE!");
+                    playerScore = 0;
+                    computerScore = 0;
+                    playerScoreDisplay.textContent = playerScore;
+                    computerScoreDisplay.textContent = computerScore;
+                }
+
+                if(playerScore == score) {
+                    window.alert("YOU WIN!");
+                    playerScore = 0;
+                    computerScore = 0;
+                }
+            
+                if(computerScore == score) {
+                    window.alert("YOU LOSE!");
+                    playerScore = 0;
+                    computerScore = 0;
+                }
+                break;    
+        }
 }
